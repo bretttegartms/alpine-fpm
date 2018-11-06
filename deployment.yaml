@@ -8,9 +8,18 @@ spec:
     image: nginx
     ports:
     - name: web
-      containerPort: 80
+      containerPort: 8080
     securityContext:
       readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+        add:
+          - CHOWN
+          - DAC_OVERRIDE
+          - SETGID
+          - SETUID
     volumeMounts:
     - mountPath: /var/tmp/nginx
       name: nginxtmp
@@ -21,6 +30,16 @@ spec:
       containerPort: 9000
     securityContext:
       readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - SYS_ADMIN
+          - AUDIT_WRITE
+          - MKNOD
+          - SYS_CHROOT
+          - SETFCAP
+          - NET_RAW
+          - SYS_PTRACE
     volumeMounts:
     - mountPath: /var/
       name: phpcache
