@@ -35,8 +35,6 @@ spec:
       capabilities:
         drop:
           - ALL
-        add:
-          - SYS_PTRACE
     volumeMounts:
     - mountPath: /var/
       name: phpcache
