@@ -24,4 +24,5 @@ php7-zlib \
 bash
 COPY php.ini /etc/php7/php-fpm.d/www.conf
 EXPOSE 9000
+USER fpm
 CMD /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.d/www.conf

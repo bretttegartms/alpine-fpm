@@ -7,9 +7,11 @@ RUN addgroup -g 6000 nginx \
     -u 6000 \
     -h /var/cache/nginx \
     -G nginx nginx 
+
 RUN apk update && apk upgrade
 RUN apk add nginx \ 
 bash
+
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 

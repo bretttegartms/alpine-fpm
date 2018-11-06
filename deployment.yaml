@@ -12,10 +12,8 @@ spec:
     securityContext:
       readOnlyRootFilesystem: true
     volumeMounts:
-    - mountPath: /var/cache/nginx
-      name: nginxcache
-    - mountPath: /var/run/
-      name: nginxpid
+    - mountPath: /var/tmp/nginx
+      name: nginxtmp
   - name: php
     image: fpm
     ports:
@@ -29,9 +27,7 @@ spec:
     - mountPath: /tmp/
       name: phptmp
   volumes:
-  - name: nginxcache
-    emptyDir: {}
-  - name: nginxpid
+  - name: nginxtmp
     emptyDir: {}
   - name: phpcache
     emptyDir: {}
