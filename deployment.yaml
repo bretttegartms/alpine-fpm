@@ -20,6 +20,7 @@ spec:
           - DAC_OVERRIDE
           - SETGID
           - SETUID
+          - KILL
     volumeMounts:
     - mountPath: /var/tmp/nginx
       name: nginxtmp
