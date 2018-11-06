@@ -33,12 +33,8 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-          - SYS_ADMIN
-          - AUDIT_WRITE
-          - MKNOD
-          - SYS_CHROOT
-          - SETFCAP
-          - NET_RAW
+          - ALL
+        add:
           - SYS_PTRACE
     volumeMounts:
     - mountPath: /var/
