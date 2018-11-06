@@ -1,9 +1,11 @@
-FROM alpine
-RUN adduser -SH \
-    -s /bin/nologin \
+FROM alpine:3.8
+LABEL maintainer="Name <foo@bar.com>"
+RUN addgroup -g 5000 fpm && \
+    adduser -SH \
+    -s /sbin/nologin \
     -u 5000 \
     -h /var/www/html \
-    fpm && addgroup -g 5000 fpm  
+    -G fpm fpm   
 RUN apk update && apk upgrade
 RUN apk add php7 \
 php7-fpm \

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: read-only-app
+spec:
+  containers:
+  - name: app
+    image: nginx
+    ports:
+    - name: web
+      containerPort: 80
+    securityContext:
+      readOnlyRootFilesystem: true
+    volumeMounts:
+    - mountPath: /var/cache/nginx
+      name: nginxcache
+    - mountPath: /var/run/
+      name: nginxpid
+  - name: php
+    image: fpm
+    ports:
+    - name: php
+      containerPort: 9000
+    securityContext:
+      readOnlyRootFilesystem: true
+    volumeMounts:
+    - mountPath: /var/
+      name: phpcache
+    - mountPath: /tmp/
+      name: phptmp
+  volumes:
+  - name: nginxcache
+    emptyDir: {}
+  - name: nginxpid
+    emptyDir: {}
+  - name: phpcache
+    emptyDir: {}
+  - name: phptmp
+    emptyDir: {}
